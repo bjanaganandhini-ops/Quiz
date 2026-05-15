@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Signup As a Teacher</h2>
+
+    <form method="POST" class="auth-form">
+
+    <input type="text" name="username" placeholder="Username" required>
+
+    <input type="email" name="email" placeholder="Email ID" required>
+
+    <input type="password" name="password" placeholder="Password" required>
+
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+    <div class="terms">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">I agree to terms & conditions</label>
+    </div>
+
+    <button type="submit" class="btn">Signup</button>
+
+</form>
+    </div>
+
+</div>
+
+{% endblock %}

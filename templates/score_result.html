@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="result-container">
+    <h2>Quiz Completed!</h2>
+
+```
+<h3>{{ quiz.title }}</h3>
+
+<p>
+    <strong>Your Score:</strong> {{ score }} / {{ total }}
+</p>
+
+{% if score == total %}
+    <p style="color:green;">Excellent Performance! 🎉</p>
+{% elif score >= total/2 %}
+    <p style="color:orange;">Good Job 👍</p>
+{% else %}
+    <p style="color:red;">Keep Practicing 💪</p>
+{% endif %}
+
+<br>
+
+<a href="{{ url_for('dashboard_player') }}" class="btn">
+    Back to Dashboard
+</a>
+```
+
+</div>
+
+{% endblock %}

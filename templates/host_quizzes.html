@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="host-wrapper">
+
+    <!-- Top Navigation -->
+    <div class="top-bar">
+        <div class="welcome">
+            Welcome, {{ username }}
+        </div>
+
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard_host') }}">Home</a>
+            <a href="{{ url_for('host_quizzes') }}">Quizzes</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="quiz-list">
+        <h2>Your Quiz Categories</h2>
+
+        {% if quizzes and quizzes|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Total Questions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for quiz in quizzes %}
+                <tr>
+                    <td>{{ quiz.title }}</td>
+                    <td>{{ quiz.questions|length }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+            <p>No quizzes created yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

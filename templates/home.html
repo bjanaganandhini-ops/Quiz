@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="home-container">
+
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='images/quiz.jpg') }}" 
+         class="logo" 
+         alt="Quiz Master Logo">
+
+    <h1 class="home-title">Welcome to Quiz Master</h1>
+    <p class="home-subtitle">Create • Attempt • Analyze Quizzes Easily</p>
+
+    <!-- Main Buttons -->
+    <div class="main-buttons">
+        <button onclick="toggleSignup()" class="main-btn primary-btn">
+            Signup
+        </button>
+
+        <a href="{{ url_for('login') }}" class="main-btn secondary-btn">
+            Login
+        </a>
+    </div>
+
+    <!-- Signup Options -->
+    <div id="signupOptions" class="role-section">
+        <h3>Register As</h3>
+
+        <div class="role-buttons">
+
+            <a href="{{ url_for('register', role='player') }}" class="role-btn">
+                🎓 Student
+            </a>
+
+            <a href="{{ url_for('register', role='host') }}" class="role-btn">
+                👨‍🏫 Teacher
+            </a>
+
+            
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function toggleSignup() {
+    const section = document.getElementById("signupOptions");
+    section.style.display = section.style.display === "block" ? "none" : "block";
+}
+</script>
+
+{% endblock %}

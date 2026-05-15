@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+```
+<!-- Top Navigation -->
+<div class="top-nav">
+    <div class="nav-links">
+        <a href="{{ url_for('dashboard_player') }}">Home</a>
+        <a href="{{ url_for('view_scores') }}">Scores</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</div>
+
+<h2 class="page-title">Available Quizzes</h2>
+
+<div class="quiz-grid">
+
+    {% if quizzes %}
+        {% for quiz in quizzes %}
+        <div class="quiz-card">
+
+            <h3>{{ quiz.title }}</h3>
+
+            <p>
+                <strong>Total Questions:</strong> 
+                {{ quiz.questions|length }}
+            </p>
+
+            <div class="card-buttons">
+
+                <!-- Start Quiz -->
+                <a href="{{ url_for('attempt_quiz', quiz_id=quiz.id) }}" 
+                   class="btn start-btn">
+                    Start
+                </a>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No quizzes available.</p>
+    {% endif %}
+
+</div>
+```
+
+</div>
+
+{% endblock %}

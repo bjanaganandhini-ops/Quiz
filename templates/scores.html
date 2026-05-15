@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="dashboard-wrapper">
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard_player') }}">Home</a>
+            <a href="{{ url_for('view_scores') }}" class="active-link">Scores</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <h2 class="page-title">My Quiz Scores</h2>
+
+    {% if scores and scores|length > 0 %}
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Quiz</th>
+                <th>Marks</th>
+                <th>Total</th>
+                <th>Percentage</th>
+                <th>Submitted Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr>
+
+                <!-- Attempt Number -->
+                <td>{{ loop.index }}</td>
+
+                <!-- Quiz Title Safe -->
+                <td>
+                    {{ score.quiz.title if score.quiz else "Quiz Deleted" }}
+                </td>
+
+                <td>{{ score.marks }}</td>
+                <td>{{ score.total }}</td>
+
+                <!-- Percentage -->
+                <td>
+                    {% if score.total > 0 %}
+                        {{ ((score.marks / score.total) * 100) | round(2) }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                </td>
+
+                <!-- Timestamp Safe -->
+                <td>
+                    {{ score.timestamp.strftime('%d-%m-%Y %H:%M') if score.timestamp else "-" }}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <p class="no-data">You have not attempted any quizzes yet.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="host-wrapper">
+
+    <!-- Top Navigation -->
+    <div class="top-bar">
+        <div class="welcome">
+            Welcome, {{ username }}
+        </div>
+
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard_host') }}">Home</a>
+            <a href="{{ url_for('host_quizzes') }}">Quizzes</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <!-- Add Quiz Section -->
+    <div class="add-quiz-box">
+        <h2>Add New Quiz</h2>
+
+        <form method="POST" action="{{ url_for('create_quiz') }}">
+            <input type="text" name="title" placeholder="Quiz Category Name" required>
+            <input type="number" name="duration" placeholder="Number of Questions" required>
+            <button type="submit" class="btn-add">Add Quiz</button>
+        </form>
+    </div>
+
+    <!-- Quiz List -->
+    <div class="quiz-list">
+        <h2>Your Quizzes</h2>
+
+        {% if quizzes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Total Questions</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for quiz in quizzes %}
+                <tr>
+                    <td>{{ quiz.title }}</td>
+
+                    <!-- Total Questions -->
+                    <td>{{ quiz.questions|length }}</td>
+
+                    <td>
+                        <a href="{{ url_for('add_question', quiz_id=quiz.id) }}" 
+                           class="btn-edit">
+                            Add Question
+                        </a>
+
+                        <a href="{{ url_for('view_quiz', quiz_id=quiz.id) }}" 
+                           class="btn-edit">
+                            View
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No quizzes created yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

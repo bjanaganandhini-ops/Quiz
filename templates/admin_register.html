@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+
+        <h2>Admin Registration</h2>
+
+        <form method="POST" class="auth-form">
+
+            <input type="text" name="username" placeholder="Username" required>
+
+            <input type="email" name="email" placeholder="Email" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <div class="terms">
+                <input type="checkbox" required>
+                <label>I agree to terms & conditions</label>
+            </div>
+
+            <button type="submit" class="btn">Register as Admin</button>
+
+        </form>
+
+        <p class="auth-link">
+            Already have an account?
+            <a href="{{ url_for('login') }}">Login</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}

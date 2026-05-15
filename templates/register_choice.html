@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="form-card">
+        <h2>Signup As</h2>
+
+        <div class="choice-buttons">
+            <a href="{{ url_for('register', role='participant') }}" class="btn">
+                STUDENT
+            </a>
+
+            <br><br>
+
+            <a href="{{ url_for('register', role='creator') }}" class="btn">
+                TEACHER
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ quiz.category }} Quiz</h2>
+<p><b>Total Questions:</b> {{ quiz.questions|length }}</p>
+
+<form method="POST">
+
+```
+{% for question in quiz.questions %}
+
+    <div style="margin-bottom:25px; padding:15px; border:1px solid #ccc;">
+        <h4>{{ loop.index }}. {{ question.question }}</h4>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="{{ question.option1 }}" required>
+            {{ question.option1 }}
+        </label><br>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="{{ question.option2 }}">
+            {{ question.option2 }}
+        </label><br>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="{{ question.option3 }}">
+            {{ question.option3 }}
+        </label><br>
+
+        <label>
+            <input type="radio" name="question_{{ question.id }}" value="{{ question.option4 }}">
+            {{ question.option4 }}
+        </label>
+
+    </div>
+
+{% else %}
+    <p>No questions available for this quiz.</p>
+{% endfor %}
+
+<button type="submit">Submit Quiz</button>
+```
+
+</form>
+
+{% endblock %}

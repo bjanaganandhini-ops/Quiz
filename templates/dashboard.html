@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Available Quizzes</h2>
+
+{% for quiz in quizzes %}
+  <div>
+    <h3>{{ quiz.title }}</h3>
+    <a href="/quiz/{{ quiz.id }}">Start Quiz</a>
+  </div>
+  <hr>
+{% endfor %}
+
+{% endblock %}

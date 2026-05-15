@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="host-wrapper">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="welcome">
+            Welcome, {{ username }}
+        </div>
+
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard_host') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <!-- Quiz List -->
+    <div class="quiz-list">
+        <h2>My Quizzes</h2>
+
+        {% if quizzes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Total Questions</th>
+                    <th>Limit</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for quiz in quizzes %}
+                <tr>
+                    <td>{{ quiz.title }}</td>
+
+                    <!-- Current Question Count -->
+                    <td>{{ quiz.questions|length }}</td>
+
+                    <!-- Max Questions -->
+                    <td>{{ quiz.duration }}</td>
+
+                    <td>
+                        <a href="{{ url_for('add_question', quiz_id=quiz.id) }}" 
+                           class="btn-edit">
+                            Add / View Questions
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+            <p>No quizzes created yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
